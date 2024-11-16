@@ -38,10 +38,25 @@ class Graph:
                     traversal_order.append(current_node)
                     queue.append(adjacent_node)
         return traversal_order
+    
+    def recommendFriends(self, traversal_order, node):
+
+        direct_friends = set(self.adjacency_list.get(node, []))
+        # print(direct_friends)
+        recommendations = {}
+
+        for friend in traversal_order:
+            if friend not in direct_friends and friend != node:
+                mutual_friends = len(direct_friends & set(self.adjacency_list.get(friend, [])))
+                recommendations[friend] = mutual_friends
+            
+        return sorted(recommendations.items(), key=lambda x: -x[1])
+
 
 
 student_graph = Graph()
 student_graph.loadGraph(student_graph_file)
 # student_graph.printGraph()
 
-student_graph.bfs('Kaylee Wise')
+bfs_traversal_order = student_graph.bfs('Kaylee Wise')
+print(student_graph.recommendFriends(bfs_traversal_order, 'Kaylee Wise'))
