@@ -1,4 +1,3 @@
-from collections import deque
 import pandas as pd
 import ast
 
@@ -27,7 +26,7 @@ class Graph:
     
     def saveGraph(self):
         df = pd.DataFrame([(node, friend) for node, friends in self.adjacency_list.items() for friend in friends], columns = ['Node', 'Friends'])
-        df.to_json('student_adjacency_list.json', orient="records", lines=True)
+        df.to_csv('student_adjacency_list.csv', index=False)
 
 student_graph = Graph()
 df = pd.read_csv(FILENAME)
