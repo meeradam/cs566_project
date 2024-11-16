@@ -2,6 +2,8 @@ from collections import deque
 import pandas as pd
 import ast
 
+FILENAME = 'boston_students.csv'
+
 class Graph:
     def __init__(self):
         self.adjacency_list = {}
@@ -23,9 +25,12 @@ class Graph:
             return True
         return False
     
+    def saveGraph(self):
+        df = pd.DataFrame([(node, friend) for node, friends in self.adjacency_list.items() for friend in friends], columns = ['Node', 'Friends'])
+        df.to_json('student_adjacency_list.json', orient="records", lines=True)
 
 student_graph = Graph()
-df = pd.read_csv('boston_students.csv')
+df = pd.read_csv(FILENAME)
 
 for i in df['student_name']:
     student_graph.addNode(i)
@@ -34,7 +39,6 @@ for i in df['student_name']:
     for j in friend:
         print(j)
         student_graph.addEdge(i, j)
-    
-
 
 student_graph.printGraph()
+student_graph.saveGraph()
