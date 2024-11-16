@@ -3,7 +3,7 @@ import pandas as pd
 from collections import defaultdict
 
 student_graph_file = 'student_adjacency_list.csv'
-student = 'Brianna Hunt'
+student = 'James Robbins'
 
 class Graph:
     def __init__(self):
@@ -80,6 +80,6 @@ bfs_traversal_order = student_graph.bfs(student)
 print(student_graph.recommendFriends(bfs_traversal_order, student))
 
 # DFS
-dfs_traversal_order = student_graph.dfs(student)
-print(student_graph.recommendFriends(dfs_traversal_order, student))
+# dfs_traversal_order = student_graph.dfs(student)
+# print(student_graph.recommendFriends(dfs_traversal_order, student))
 

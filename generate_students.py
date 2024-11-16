@@ -12,7 +12,7 @@ student_college = []
 for i in range(0, n_students):
 
     # inital list of student names
-    name = fake.name()
+    name = fake.first_name() + " " +  fake.last_name()
     student_name.append(name)
     student_name = list(set(student_name))
 
