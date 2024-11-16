@@ -87,7 +87,7 @@ student_graph.loadGraph(student_graph_file)
 # BFS
 bfs_traversal_order = student_graph.bfs(student)
 friend_list = student_graph.getFriendList(bfs_traversal_order, student)
-#print(len(friend_list))
+# print(friend_list)
 recommended_friends = student_graph.recommendFriends(friend_list, 5)
 
 
