@@ -4,8 +4,8 @@ import random
 
 fake = Faker()
 boston_colleges = ['BU', 'BC', 'Harvard', 'MIT', 'NEU', 'UMass']
-max_friends = 20
-n_students = 100
+max_friends = 100
+n_students = 500
 
 student_name = []
 student_college = []
@@ -14,9 +14,10 @@ for i in range(0, n_students):
     # inital list of student names
     name = fake.name()
     student_name.append(name)
-    student_college.append(random.choice(boston_colleges))
+    student_name = list(set(student_name))
 
-student_name = list(set(student_name))
+for i in range(len(student_name)):
+    student_college.append(random.choice(boston_colleges))
 
 d = {'student_name':student_name, 'college':student_college}
 df = pd.DataFrame(data = d)

@@ -3,6 +3,7 @@ import pandas as pd
 from collections import defaultdict
 
 student_graph_file = 'student_adjacency_list.csv'
+student = 'Brianna Hunt'
 
 class Graph:
     def __init__(self):
@@ -46,7 +47,7 @@ class Graph:
         while stack:
             current_node = stack.pop()
             if current_node not in visited:
-                print(current_node)
+                # print(current_node)
                 visited.add(current_node)
                 traversal_order.append(current_node)
                 for adjacent_node in self.adjacency_list[current_node]:
@@ -75,10 +76,10 @@ student_graph.loadGraph(student_graph_file)
 # student_graph.printGraph()
 
 # BFS
-bfs_traversal_order = student_graph.bfs('Kaylee Wise')
-print(student_graph.recommendFriends(bfs_traversal_order, 'Kaylee Wise'))
+bfs_traversal_order = student_graph.bfs(student)
+print(student_graph.recommendFriends(bfs_traversal_order, student))
 
 # DFS
-dfs_traversal_order = student_graph.dfs('Kaylee Wise')
-print(student_graph.recommendFriends(dfs_traversal_order, 'Kaylee Wise'))
+dfs_traversal_order = student_graph.dfs(student)
+print(student_graph.recommendFriends(dfs_traversal_order, student))
 
