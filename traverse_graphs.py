@@ -38,6 +38,22 @@ class Graph:
                     traversal_order.append(current_node)
                     queue.append(adjacent_node)
         return traversal_order
+
+    def dfs(self, node):
+        visited = set()
+        stack = [node]
+        traversal_order = []
+        while stack:
+            current_node = stack.pop()
+            if current_node not in visited:
+                print(current_node)
+                visited.add(current_node)
+                traversal_order.append(current_node)
+                for adjacent_node in self.adjacency_list[current_node]:
+                    if adjacent_node not in visited:
+                        stack.append(adjacent_node)
+
+        return traversal_order
     
     def recommendFriends(self, traversal_order, node):
 
@@ -58,5 +74,11 @@ student_graph = Graph()
 student_graph.loadGraph(student_graph_file)
 # student_graph.printGraph()
 
+# BFS
 bfs_traversal_order = student_graph.bfs('Kaylee Wise')
 print(student_graph.recommendFriends(bfs_traversal_order, 'Kaylee Wise'))
+
+# DFS
+dfs_traversal_order = student_graph.dfs('Kaylee Wise')
+print(student_graph.recommendFriends(dfs_traversal_order, 'Kaylee Wise'))
+
