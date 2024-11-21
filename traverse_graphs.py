@@ -1,9 +1,10 @@
 from collections import deque
 import pandas as pd
 from collections import defaultdict
+import time
 
 student_graph_file = 'student_adjacency_list.csv'
-student = 'James Robbins'
+#student = student_graph_file['Node'][0]
 
 class Graph:
     def __init__(self):
@@ -11,6 +12,7 @@ class Graph:
     
     def loadGraph(self, file_name):
         df = pd.read_csv(file_name, header=None, names=['Node', 'Friend'])
+        student = df['Node'][1]
         adjacency_dict = defaultdict(list)
         for _, row in df.iterrows():
             node = row["Node"].strip()
@@ -19,6 +21,7 @@ class Graph:
 
         # Convert defaultdict to a regular dictionary
         self.adjacency_list = dict(adjacency_dict)
+        return student
         
     def printGraph(self):
         for node, friends in self.adjacency_list.items():
@@ -71,28 +74,39 @@ class Graph:
         return sorted(friend_list.items(), key=lambda x: -x[1])
     
     def recommendFriends(self, friend_list, n_mutual_friend):
+        """
+        Recommend friends with at least more than equal to the defined number of mutual friends
+        """
         recommended_friends = []
         for i in range(len(friend_list)):
             if int(friend_list[i][1]) >= n_mutual_friend:
                 recommended_friends.append(friend_list[i][0])
-        print(recommended_friends)
+        #print(recommended_friends)
         return recommended_friends
 
 
 
 student_graph = Graph()
-student_graph.loadGraph(student_graph_file)
+student = student_graph.loadGraph(student_graph_file)
 # student_graph.printGraph()
 
 # BFS
+print("Performing BFS traversal")
+start_time = time.time()
 bfs_traversal_order = student_graph.bfs(student)
 friend_list = student_graph.getFriendList(bfs_traversal_order, student)
 # print(friend_list)
 recommended_friends = student_graph.recommendFriends(friend_list, 5)
+time_taken = time.time() - start_time
+print(f"Took {time_taken}s")
 
 
 # DFS
+print("Performing DFS traversal")
+start_time = time.time()
 dfs_traversal_order = student_graph.dfs(student)
 friend_list = student_graph.getFriendList(dfs_traversal_order, student)
 #print(len(friend_list))
 recommended_friends = student_graph.recommendFriends(friend_list, 5)
+time_taken = time.time() - start_time
+print(f"Took {time_taken}s")
