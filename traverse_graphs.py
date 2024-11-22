@@ -3,20 +3,20 @@ import pandas as pd
 from collections import defaultdict
 import time
 
-student_graph_file = 'student_adjacency_list.csv'
+# student_graph_file = 'student_adjacency_list.csv'
 #student = student_graph_file['Node'][0]
 
 class Graph:
     def __init__(self):
         self.adjacency_list = {}
     
-    def loadGraph(self, file_name):
-        df = pd.read_csv(file_name, header=None, names=['Node', 'Friend'])
+    def loadGraph(self, df):
+        # df = pd.read_csv(file_name, header=None, names=['Node', 'Friend'])
         student = df['Node'][1]
         adjacency_dict = defaultdict(list)
         for _, row in df.iterrows():
             node = row["Node"].strip()
-            friend = row["Friend"].strip()
+            friend = row["Friends"].strip()
             adjacency_dict[node].append(friend)
 
         # Convert defaultdict to a regular dictionary
@@ -85,28 +85,32 @@ class Graph:
         return recommended_friends
 
 
-
-student_graph = Graph()
-student = student_graph.loadGraph(student_graph_file)
+def get_student_graph(df):
+    student_graph = Graph()
+    student = student_graph.loadGraph(df)
+    return student, student_graph
 # student_graph.printGraph()
 
 # BFS
-print("Performing BFS traversal")
-start_time = time.time()
-bfs_traversal_order = student_graph.bfs(student)
-friend_list = student_graph.getFriendList(bfs_traversal_order, student)
-# print(friend_list)
-recommended_friends = student_graph.recommendFriends(friend_list, 5)
-time_taken = time.time() - start_time
-print(f"Took {time_taken}s")
-
+def BFS(student_graph, student):
+    # print("Performing BFS traversal")
+    start_time = time.time()
+    bfs_traversal_order = student_graph.bfs(student)
+    friend_list = student_graph.getFriendList(bfs_traversal_order, student)
+    # print(friend_list)
+    recommended_friends = student_graph.recommendFriends(friend_list, 2)
+    time_taken = time.time() - start_time
+    # print(f"Took {time_taken}s")
+    return recommended_friends, time_taken
 
 # DFS
-print("Performing DFS traversal")
-start_time = time.time()
-dfs_traversal_order = student_graph.dfs(student)
-friend_list = student_graph.getFriendList(dfs_traversal_order, student)
-#print(len(friend_list))
-recommended_friends = student_graph.recommendFriends(friend_list, 5)
-time_taken = time.time() - start_time
-print(f"Took {time_taken}s")
+def DFS(student_graph, student):
+    # print("Performing DFS traversal")
+    start_time = time.time()
+    dfs_traversal_order = student_graph.dfs(student)
+    friend_list = student_graph.getFriendList(dfs_traversal_order, student)
+    # print(friend_list)
+    recommended_friends = student_graph.recommendFriends(friend_list, 2)
+    time_taken = time.time() - start_time
+    # print(f"Took {time_taken}s")
+    return recommended_friends, time_taken
