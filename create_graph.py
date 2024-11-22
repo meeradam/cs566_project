@@ -1,8 +1,6 @@
 import pandas as pd
 import ast
 
-FILENAME = 'boston_students.csv'
-
 class Graph:
     def __init__(self):
         self.adjacency_list = {}
@@ -26,18 +24,21 @@ class Graph:
     
     def saveGraph(self):
         df = pd.DataFrame([(node, friend) for node, friends in self.adjacency_list.items() for friend in friends], columns = ['Node', 'Friends'])
-        df.to_csv('student_adjacency_list.csv', index=False)
+        # df.to_csv('student_adjacency_list.csv', index=False)
+        return df
 
-student_graph = Graph()
-df = pd.read_csv(FILENAME)
-
-for i in df['student_name']:
-    student_graph.addNode(i)
-    friend = df['friends'].loc[df['student_name'] == i]
-    friend = ast.literal_eval(friend.iloc[0])
-    for j in friend:
-        print(j)
-        student_graph.addEdge(i, j)
-
-student_graph.printGraph()
-student_graph.saveGraph()
+def create_student_graph(df):
+    student_graph = Graph()
+    for i in df['student_name']:
+        student_graph.addNode(i)
+        friend = df['friends'].loc[df['student_name'] == i]
+        if isinstance(friend.iloc[0], list):
+            friend = friend.iloc[0]
+        else:
+            friend = ast.literal_eval(friend.iloc[0])
+        for j in friend:
+            # print(j)
+            student_graph.addEdge(i, j)
+    
+    df = student_graph.saveGraph()
+    return df

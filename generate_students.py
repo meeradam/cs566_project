@@ -43,6 +43,6 @@ def generate_student_list(n_students, max_friends):
     friends = {'friends': friend_list}
     df['friends'] = friend_list
     # df.to_csv('boston_students.csv', index=None)
-    print(df.head())
+    return df
 
 #generate_student_list(50, 5)
