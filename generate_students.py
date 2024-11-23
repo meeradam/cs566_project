@@ -5,10 +5,11 @@ from variables import *
 
 fake = Faker()
 
-def generate_student_list(n_students, max_friends):
+def generate_student_list(n_students, max_friends, weighted=False):
 
     student_name = []
     student_college = []
+    college_distance = []
 
     for i in range(0, n_students):
 
@@ -17,9 +18,19 @@ def generate_student_list(n_students, max_friends):
         student_name.append(name)
         student_name = list(set(student_name))
     for i in range(len(student_name)):
-        student_college.append(random.choice(boston_colleges))
+        college_no = random.randint(0, len(boston_colleges)-1)
+        # print(college_no)
+        student_college.append(boston_colleges[college_no])
+        if weighted == False:
+            d = {'student_name':student_name, 'college':student_college}
+        else:
+            college_distance.append(distance_BU[college_no])
+            d = {'student_name':student_name, 'college':student_college, 'college_distance_from_BU': college_distance}
 
-    d = {'student_name':student_name, 'college':student_college}
+
+        # student_college.append(random.choice(boston_colleges))
+
+    # d = {'student_name':student_name, 'college':student_college}
     df = pd.DataFrame(data = d)
 
     friend_list = []
