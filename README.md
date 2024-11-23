@@ -15,8 +15,8 @@ To get a sense of the time complexity for BFS and DFS, we applied both algoithms
 
 Plotting the graph for time taken to traverse the graph against the number of students, we can see that the time taken for DFS traversal significantly increases for large values of n, when compared against BFS traversal. 
 
-![plot](Figure_1.png)
+![plot](assets/Figure_1.png)
 
 Plotting the traversal time and time taken to recommend friends based on the result:
 
-![subplot](Figure_2.png)
+![subplot](assets/Figure_2.png)
