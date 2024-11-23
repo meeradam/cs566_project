@@ -8,6 +8,9 @@ n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 50
 total_time_bfs = []
 total_time_dfs = []
 
+recommend_friends_bfs = []
+recommend_friends_dfs = []
+
 for i in range(len(n_students)):
     print(f"For {n_students[i]} students")
     max_friends = int(n_students[i]/5)
@@ -31,14 +34,25 @@ for i in range(len(n_students)):
     total_time_bfs.append(time_taken_bfs * 1000)
     total_time_dfs.append(time_taken_dfs * 1000)
 
-print(total_time_bfs)
-print(total_time_dfs)
+    recommend_friends_bfs.append(time_taken_bfs * 1000)
+    recommend_friends_dfs.append(time_taken_dfs * 1000)
 
 
-plt.plot(n_students, total_time_bfs, label="BFS")
+# print(recommend_friends_bfs)
+# print(recommend_friends_dfs)
 
-plt.plot(n_students, total_time_dfs, label="DFS")
-plt.xlabel('Number of students')
-plt.ylabel('Time taken in ms')
-plt.legend()
+
+fig, (ax1, ax2) = plt.subplots(1, 2)
+fig.suptitle("Friend Recommendations using BFS and DFS")
+ax1.plot(n_students, total_time_bfs, label="BFS")
+ax1.plot(n_students, total_time_dfs, label="DFS")
+# ax1.xlabel('Number of students')
+ax1.set_title('Traversal time in ms')
+ax1.set_xlabel("Number of students")
+
+ax2.plot(n_students, recommend_friends_bfs, label="BFS")
+ax2.plot(n_students, recommend_friends_dfs, label="DFS")
+ax2.set_title('Recommend time in ms')
+ax2.set_xlabel("Number of students")
+ax1.legend()
 plt.show()
