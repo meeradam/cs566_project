@@ -1,5 +1,6 @@
 from variables import *
 from generate_students import *
+from create_weighted_graph import *
 
 n_students = [50]
 
@@ -13,4 +14,7 @@ for i in range(len(n_students)):
     print(f"Each student has {max_friends} maximum number of friends")
 
     df_students = generate_student_list(n_students[i], max_friends, weighted = True)
-    print(df_students)
+    # print(df_students)
+    created_nodes = create_weighted_graph(df_students)
+    # print(created_nodes)
+    
