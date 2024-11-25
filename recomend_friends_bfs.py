@@ -19,4 +19,3 @@ def recommend_friends_with_bfs( adjacency_list, user):
     return sorted(recommendations.items(), key=lambda x: -x[1])
 
 # Example Usage
-print(f"Friend recommendations for Alice:", recommend_friends_with_bfs(adjacency_list, 'Crystal Hammond'))
