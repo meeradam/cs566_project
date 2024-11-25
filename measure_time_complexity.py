@@ -4,7 +4,9 @@ from create_graph import *
 from traverse_graphs import *
 import matplotlib.pyplot as plt
 
-n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 5000]
+# n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 5000]
+n_students = [50, 100, 150, 200, 250, 500, 750]
+
 total_time_bfs = []
 total_time_dfs = []
 

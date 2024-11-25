@@ -2,6 +2,7 @@ from collections import deque
 import pandas as pd
 from collections import defaultdict
 import time
+import heapq
 
 # student_graph_file = 'student_adjacency_list.csv'
 #student = student_graph_file['Node'][0]
@@ -114,3 +115,39 @@ def DFS(student_graph, student):
     time_taken = time.time() - start_time
     # print(f"Took {time_taken}s")
     return recommended_friends, time_taken
+
+# Dijkstra Algorithm
+class Dijkstra:
+    def __init__(self):
+        self.heap = []
+    
+    def calculate(self, start_node):
+        print(start_node)
+        start_node.min_distance = 0
+        heapq.heappush(self.heap, start_node)
+        
+        while self.heap:
+            # pop element with the lowest distance
+            actual_node = heapq.heappop(self.heap)
+            if actual_node.visited:
+                continue
+            #  consider the neighbors
+            for edge in actual_node.neighbours:
+                # print(edge)
+                start = edge.start_node
+                target = edge.target_node
+                new_distance = start.min_distance + edge.weight
+                if new_distance < target.min_distance:
+                    target.min_distance = new_distance
+                    target.predecessor = start
+                    # update the heap
+                    heapq.heappush(self.heap, target)
+                    # [F-19, F-17]
+            actual_node.visited = True
+    
+    def get_shortest_path(self, node):
+        print(f"The shortest path to the vertext is: {node.min_distance}")
+        actual_node = node
+        while actual_node is not None:
+            print(actual_node.name, end=" ")
+            actual_node = actual_node.predecessor

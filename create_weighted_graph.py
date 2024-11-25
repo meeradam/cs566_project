@@ -54,5 +54,3 @@ def create_weighted_graph(df):
                 friend_node = created_nodes[j]
             source_node.addEdge(edge_weight, friend_node)
     return created_nodes
-        
-            

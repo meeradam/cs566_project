@@ -1,6 +1,7 @@
 from variables import *
 from generate_students import *
 from create_weighted_graph import *
+from traverse_graphs import *
 
 n_students = [50]
 
@@ -17,4 +18,12 @@ for i in range(len(n_students)):
     # print(df_students)
     created_nodes = create_weighted_graph(df_students)
     # print(created_nodes)
-    
+
+    algorithm = Dijkstra()
+    name, node = list(created_nodes.items())[i]
+    algorithm.calculate(node)
+
+    target_name, target_node = list(created_nodes.items())[5]
+    algorithm.get_shortest_path(node)
+    # print(target_name, target_node)
+    algorithm.get_shortest_path(target_node)
