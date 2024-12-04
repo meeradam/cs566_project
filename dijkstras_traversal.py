@@ -5,8 +5,8 @@ from traverse_graphs import *
 import time
 import matplotlib.pyplot as plt
 
-# n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000]
-n_students = [100]
+n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000]
+# n_students = [100]
 dijkstra_time = []
 
 """
