@@ -151,3 +151,9 @@ class Dijkstra:
         while actual_node is not None:
             print(actual_node.name, end=" ")
             actual_node = actual_node.predecessor
+
+df = pd.read_csv('student_adjacency_list.csv')
+student, student_graph = get_student_graph(df)
+print(student)
+recommended_friends, time_taken = BFS(student_graph, student)
+print(recommended_friends)

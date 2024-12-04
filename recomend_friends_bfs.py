@@ -1,4 +1,4 @@
-def recommend_friends_with_bfs( adjacency_list, user):
+def recommend_friends_with_bfs(adjacency_list, user):
     # Get the BFS traversal from the existing function
     bfs_result = bfs(adjacency_list, user)
     
@@ -19,4 +19,7 @@ def recommend_friends_with_bfs( adjacency_list, user):
     return sorted(recommendations.items(), key=lambda x: -x[1])
 
 # Example Usage
-print(f"Friend recommendations for Alice:", recommend_friends_with_bfs(adjacency_list, 'Crystal Hammond'))
+print(f"Friend recommendations for Alice:", recommend_friends_with_bfs(df, 'Crystal Hammond'))
+
+# df = pd.read_csv('student_adjacency_list.csv')
+# recommend_friends_with_bfs(df, user)

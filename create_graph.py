@@ -24,7 +24,7 @@ class Graph:
     
     def saveGraph(self):
         df = pd.DataFrame([(node, friend) for node, friends in self.adjacency_list.items() for friend in friends], columns = ['Node', 'Friends'])
-        # df.to_csv('student_adjacency_list.csv', index=False)
+        df.to_csv('student_adjacency_list.csv', index=False)
         return df
 
 def create_student_graph(df):
@@ -42,3 +42,6 @@ def create_student_graph(df):
     
     df = student_graph.saveGraph()
     return df
+
+# df = pd.read_csv('boston_students.csv')
+# create_student_graph(df)
