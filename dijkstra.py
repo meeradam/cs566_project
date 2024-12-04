@@ -37,16 +37,16 @@ class Graph:
         distances = self.dijkstra(start_node)
         # Sort nodes by distance
         sorted_distances = sorted(distances.items(), key=lambda x: x[1])
-        print(f"Shortest paths from {start_node}:")
+        # print(f"Shortest paths from {start_node}:")
         for node, distance in sorted_distances[:n]:
-            print(f"Node: {node}, Distance: {distance}")
+            print(f"Node: {node}, Distance: {distance} \n")
 
-# Load the graph
-student = student_graph.loadGraph('student_adjacency_list.csv')
+# # Load the graph
+# student = student_graph.loadGraph('student_adjacency_list.csv')
 
-# Perform Dijkstra's algorithm for n students
-n = 10  # Number of students to print results for
-start_time = time.time()
-student_graph.printShortestPaths(student, n)
-time_taken = time.time() - start_time
-print(f"Dijkstra's algorithm took {time_taken:.4f} seconds")
+# # Perform Dijkstra's algorithm for n students
+# n = 10  # Number of students to print results for
+# start_time = time.time()
+# student_graph.printShortestPaths(student, n)
+# time_taken = time.time() - start_time
+# print(f"Dijkstra's algorithm took {time_taken:.4f} seconds")

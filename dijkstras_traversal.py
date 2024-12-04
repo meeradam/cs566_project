@@ -2,14 +2,19 @@ from variables import *
 from generate_students import *
 from create_weighted_graph import *
 from traverse_graphs import *
+import time
+import matplotlib.pyplot as plt
 
-n_students = [50]
+n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000]
+# n_students = [50, 100, 150, 200, 250, 500, 750]
+dijkstra_time = []
 
 """
 PERFORMING TRAVERSALS ON WEIGHTED GRAPHS
 """
 
 for i in range(len(n_students)):
+    start_time = time.time()
     print(f"For {n_students[i]} students")
     max_friends = int(n_students[i]/5)
     print(f"Each student has {max_friends} maximum number of friends")
@@ -27,3 +32,11 @@ for i in range(len(n_students)):
     algorithm.get_shortest_path(node)
     # print(target_name, target_node)
     algorithm.get_shortest_path(target_node)
+    dijkstra_time.append((time.time() - start_time) * 1000)
+
+print(dijkstra_time)
+plt.plot(n_students, dijkstra_time)
+plt.xlabel('Number of students')
+plt.ylabel('Time taken (ms)')
+plt.title("Friend Recommendation using Dijkstra's Algorithm")
+plt.show()
