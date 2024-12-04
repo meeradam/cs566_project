@@ -146,14 +146,20 @@ class Dijkstra:
             actual_node.visited = True
     
     def get_shortest_path(self, node):
+        print(node.name)
         print(f"The shortest path to the vertext is: {node.min_distance}")
         actual_node = node
         while actual_node is not None:
             print(actual_node.name, end=" ")
             actual_node = actual_node.predecessor
 
-df = pd.read_csv('student_adjacency_list.csv')
-student, student_graph = get_student_graph(df)
-print(student)
-recommended_friends, time_taken = BFS(student_graph, student)
-print(recommended_friends)
+# df = pd.read_csv('student_adjacency_list.csv')
+# student, student_graph = get_student_graph(df)
+# print(f"For student {student}, ")
+# recommended_friends, time_taken = BFS(student_graph, student)
+# print("Using BFS: ")
+# print(recommended_friends)
+
+# print("Using DFS: ")
+# recommended_friends, time_taken = DFS(student_graph, student)
+# print(recommended_friends)

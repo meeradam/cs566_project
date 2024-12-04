@@ -5,8 +5,8 @@ from traverse_graphs import *
 import time
 import matplotlib.pyplot as plt
 
-n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000]
-# n_students = [50, 100, 150, 200, 250, 500, 750]
+# n_students = [50, 100, 150, 200, 250, 500, 750, 1000, 1250, 1500, 1750, 2000]
+n_students = [100]
 dijkstra_time = []
 
 """
@@ -34,7 +34,7 @@ for i in range(len(n_students)):
     algorithm.get_shortest_path(target_node)
     dijkstra_time.append((time.time() - start_time) * 1000)
 
-print(dijkstra_time)
+# print(dijkstra_time)
 plt.plot(n_students, dijkstra_time)
 plt.xlabel('Number of students')
 plt.ylabel('Time taken (ms)')

@@ -30,7 +30,7 @@ def generate_student_list(n_students, max_friends, weighted=False):
 
         # student_college.append(random.choice(boston_colleges))
 
-    d = {'student_name':student_name, 'college':student_college}
+    # d = {'student_name':student_name, 'college':student_college}
     df = pd.DataFrame(data = d)
 
     friend_list = []
@@ -53,7 +53,7 @@ def generate_student_list(n_students, max_friends, weighted=False):
     
     friends = {'friends': friend_list}
     df['friends'] = friend_list
-    # df.to_csv('boston_students.csv', index=None)
+    df.to_csv('boston_students.csv', index=None)
     return df
 
-# generate_student_list(100, 10, weighted=False)
+generate_student_list(100, 10, weighted=True)
