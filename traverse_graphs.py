@@ -153,13 +153,13 @@ class Dijkstra:
             print(actual_node.name, end=" ")
             actual_node = actual_node.predecessor
 
-# df = pd.read_csv('student_adjacency_list.csv')
-# student, student_graph = get_student_graph(df)
-# print(f"For student {student}, ")
-# recommended_friends, time_taken = BFS(student_graph, student)
-# print("Using BFS: ")
+df = pd.read_csv('datasets/unweighted/student_adjacency_list.csv')
+student, student_graph = get_student_graph(df)
+print(f"For student {student}, ")
+recommended_friends, time_taken = BFS(student_graph, student)
+print("Using BFS: ")
 # print(recommended_friends)
 
-# print("Using DFS: ")
-# recommended_friends, time_taken = DFS(student_graph, student)
+print("Using DFS: ")
+recommended_friends, time_taken = DFS(student_graph, student)
 # print(recommended_friends)
