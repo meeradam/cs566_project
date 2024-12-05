@@ -20,3 +20,19 @@ Plotting the graph for time taken to traverse the graph against the number of st
 Plotting the traversal time and time taken to recommend friends based on the result:
 
 ![subplot](assets/Figure_2.png)
+
+## Creating weighted graphs
+Following traversal on unweighted graphs, we explored graph traversal on weighted graphs. Using the script `create_weighted_graph.py`, We attached a student to a university in Boston and attached a weight to each student. The weight is determined by the univeristy's distance from Boston University - the further the univeristy is, the higher the weight. Students from BU have a default weight of 1. 
+
+To create edge weights between the student and their friends, we took the absolute difference of the univeristy distance between the student and their friends.
+
+$|Distance_{frienduniveristy} - Distance_{studentuniverisyt}| + 1$
+
+## Implementing Dijstra's Algorihm
+We used the script `dijkstras_traversal.py` to traverse the weighted graph using Dijkstra's Algorithm. We created nodes and edges from the students and the calculated weighted. Following that, we implemented a heap and calculated the shortest path (shortest distance a student is from another) and returned the result. 
+
+
+## Time complexity of Dijkstra's Algorithm
+We recorded the time taken to traverse the graphs of various number of students using Dijkstra's Algorithm and obtain the shortest path from one student to another. 
+
+![plot](assets/dijkstra.png)
